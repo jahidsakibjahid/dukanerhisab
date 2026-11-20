@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>বাকির খাতা</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="logo"><span class="mark"></span>বাকির খাতা</div>
+    <input id="search" class="search" type="search" placeholder="কাস্টমারের নাম বা ফোন খুঁজুন…" aria-label="কাস্টমার খুঁজুন">
+  </header>
+
+  <section class="stats" id="stats"></section>
+
+  <div class="grid">
+    <div class="card">
+      <div class="ch">
+        <h3>কাস্টমার তালিকা <small id="ccount"></small></h3>
+        <label class="chk"><input type="checkbox" id="onlydue"> শুধু বাকি আছে</label>
+      </div>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>কাস্টমার</th><th class="r">মোট বাকি</th><th class="r">জমা</th><th class="r">এখন বাকি</th><th></th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card side">
+      <div class="seg">
+        <button type="button" data-t="baki" class="on">নতুন বাকি</button>
+        <button type="button" data-t="jama">টাকা জমা</button>
+      </div>
+
+      <form id="fbaki" class="form">
+        <label>কাস্টমারের নাম<input id="bname" list="clist" required autocomplete="off" placeholder="যেমন: রহিম ভাই"></label>
+        <datalist id="clist"></datalist>
+        <label>ফোন (নতুন কাস্টমার হলে, ঐচ্ছিক)<input id="bphone" type="tel" placeholder="01XXXXXXXXX"></label>
+        <label>বাকির পরিমাণ (৳)<input id="bamt" type="number" min="1" step="any" required></label>
+        <label>তারিখ<input id="bdate" type="date" required></label>
+        <label>কী কিনেছে (ঐচ্ছিক)<input id="bnote" placeholder="যেমন: চাল ২ কেজি"></label>
+        <button class="btn" type="submit">বাকি যোগ করুন</button>
+      </form>
+
+      <form id="fjama" class="form" hidden>
+        <label>কাস্টমার<select id="jcust" required></select></label>
+        <p class="hint" id="jhint"></p>
+        <label>কত টাকা দিয়েছে (৳)<input id="jamt" type="number" min="1" step="any" required></label>
+        <label>তারিখ<input id="jdate" type="date" required></label>
+        <label>নোট (ঐচ্ছিক)<input id="jnote" placeholder="যেমন: বিকাশে দিয়েছে"></label>
+        <button class="btn" type="submit">জমা নিন, বাকি থেকে কাটুন</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <button class="btn ghost" id="export">ব্যাকআপ নিন</button>
+    <label class="btn ghost">ব্যাকআপ ফেরত দিন<input id="import" type="file" accept="application/json" hidden></label>
+    <button class="btn ghost" id="sample">নমুনা তথ্য দিন</button>
+    <button class="btn danger" id="reset">সব তথ্য মুছুন</button>
+  </footer>
+</div>
+
+<dialog id="dlg"></dialog>
+<div id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
